@@ -5,69 +5,116 @@ public class Main {
 
 //      FEEDBACK OPGAVE:
 
-        //Tid på dagen.
+        //Time of the day.
         Scanner input = new Scanner(System.in);
-        System.out.println("Hvad er klokken? Skriv i militær tid fx 1300.");
+        System.out.println("What time is it? Write like it´s military time, example 1300.");
         String timeInNumbers = input.nextLine();
         int time = Integer.parseInt(timeInNumbers);
+
+        boolean isNight = false;
+        boolean isMorning = false;
+        boolean isDay = false;
+        boolean isEvening = false;
+
         if (time >= 0 && time <= 600){
+            isNight = true;
             System.out.println("Night");
         } else if (time > 600 && time <= 1200){
+            isMorning = true;
             System.out.println("Morning");
-        } else if (time > 1200 && time <= 1800) {
+        } else if (time > 1200 && time <= 1800){
+            isDay = true;
             System.out.println("Day");
-        } else System.out.println("Evening");
+        } else if (time > 1800 && time <= 2400){
+            isEvening = true;
+            System.out.println("Evening");
+        } else System.out.println("Number not recognizable");
 
 
-        //Trafikmængde.
-        System.out.println("Hvordan er trafikmængden? HØJ eller LAV.");
+
+        //Traffic density.
+        System.out.println("How´s the traffic density? High or Low.");
         String traffic = input.nextLine();
-        if (traffic.equals("HØJ")){
-            System.out.println("Trafikmængden er HØJ!");
-        } else System.out.println("Trafikmængden er LAV!");
 
-        //Områdetype.
-        System.out.println("Hvilket boligområde befinder du dig ved? BOLIG, ERHVERV eller BLANDET.");
-        String boligOmraade = input.nextLine();
-        if (boligOmraade.equals("BOLIG")){
-            System.out.println("Du befinder dig i et boligområde!");
-        } else if (boligOmraade.equals("ERHVERV")) {
-            System.out.println("Du befinder dig i et erhvervområde!");
-        } else System.out.println("Du befinder dig i et blandet område!");
+        boolean isHigh = false;
+        boolean isLow = false;
 
-        //Nødsituation
-        System.out.println("Er det en nødsituation? JA eller NEJ.");
-        String nødsituation = input.nextLine();
-        if (nødsituation.equals("JA")){
-            System.out.println("Ambulance er på vej!");
-        } else System.out.println("Ingen nødsituation.");
+        if (traffic.equals("High")){
+            isHigh = true;
+            System.out.println("Traffic density is high.");
+        } else if (traffic.equals("Low")){
+            isLow = true;
+            System.out.println("Traffic density is low.");
+        } else System.out.println("Traffic density not recognizable");
 
-        //Betingelser for trafiklys.
-        Green
-        if (time == "DAG" && traffic == "LAV"){
+
+
+        //Area definition.
+        System.out.println("What´s the area definition? Citizen, Company or Mixed.");
+        String areaDefinition = input.nextLine();
+
+        boolean isCitizen = false;
+        boolean isCompany = false;
+        boolean isMixed = false;
+
+        if (areaDefinition.equals("Citizen")){
+            isCitizen = true;
+            System.out.println("Area definition is citizen");
+        } else if (areaDefinition.equals("Company")) {
+            isCompany = true;
+            System.out.println("Area definition is company");
+        } else if (areaDefinition.equals("Mixed")){
+            isMixed = true;
+            System.out.println("Area definition is mixed");
+        } else System.out.println("Area definition not recognizable");
+
+
+
+        //Emergency situation.
+        System.out.println("Is it an emergency? Yes or No.");
+        String emergency = input.nextLine();
+
+        boolean isEmergency = false;
+        boolean isNotEmergency = false;
+
+        if (emergency.equals("Yes")){
+            isEmergency = true;
+            System.out.println("It´s an emergency.");
+        } else if (emergency.equals("No")){
+            isNotEmergency = true;
+            System.out.println("No emergency");
+        } else System.out.println("Emergency type not recognizable");
+
+
+
+        //Conditions for traffic light.
+        //Green light.
+        if (isDay && isLow){
             System.out.println("Green light");
-        } else if (nødsituation.equals("JA")) {
+        } else if (emergency.equals("Yes")) {
             System.out.println("Green light");
-        }
-        Yellow
-        if (time == "AFTEN"){
+        } else System.out.println();
+        //Yellow light.
+        if (isEvening){
             System.out.println("Yellow light");
-        } else if (time == "NAT" && traffic == "LAV") {
+        } else if (isNight && isLow) {
             System.out.println("Yellow light");
-        }
-        Red
-        if (time == "NAT" && traffic == "HØJ"){
+        } else System.out.println();
+        //Red light.
+        if (isNight && isHigh){
             System.out.println("Red light");
-        } else if (boligOmraade == "BOLIG" && traffic == "HØJ") {
+        } else if (isCitizen && isHigh) {
             System.out.println("Red light");
-        }
+        } else System.out.println();
 
-        //Betingelder for adgang:
-        if (boligOmraade == true && "BLANDET" == true && traffic == "LAV"){
-            System.out.println("Tilladt");
-        } else if (boligOmraade == "BOLIG" && "NAT" == "NAT") {
-            System.out.println("Forbudt");
-        }
+
+
+        //Conditions for access.
+        if (isCompany && isMixed && isLow){
+            System.out.println("You´ve gained access.");
+        } else if (isCitizen && isNight) {
+            System.out.println("Access denied.");
+        } else System.out.println("Access condition unknown.");
 
     }
 }
