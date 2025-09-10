@@ -28,7 +28,7 @@ public class Main {
         } else if (time > 1800 && time <= 2400){
             isEvening = true;
             System.out.println("Evening");
-        } else System.out.println("Number not recognizable");
+        } else System.out.println("Time not recognizable");
 
 
 
@@ -89,32 +89,26 @@ public class Main {
 
         //Conditions for traffic light.
         //Green light.
-        if (isDay && isLow){
+        if ((isDay && isLow) || isEmergency){ //Time and traffic OR emergency.
             System.out.println("Green light");
-        } else if (emergency.equals("Yes")) {
-            System.out.println("Green light");
-        } else System.out.println();
-        //Yellow light.
-        if (isEvening){
+        } else if (isEvening || (isNight && isLow)){ //Time OR time and traffic.
             System.out.println("Yellow light");
-        } else if (isNight && isLow) {
-            System.out.println("Yellow light");
-        } else System.out.println();
-        //Red light.
-        if (isNight && isHigh){
-            System.out.println("Red light");
-        } else if (isCitizen && isHigh) {
+        } else if ((isNight && isHigh) || (isCitizen && isHigh)){ //Time and traffic OR area and traffic.
             System.out.println("Red light");
         } else System.out.println();
 
 
 
         //Conditions for access.
-        if (isCompany && isMixed && isLow){
+        //If (Day + High + Company + noEmergency) = No Access condition or light condition met.
+        if ((isCompany && isLow) || (isMixed && isLow)){ //Area and traffic.
             System.out.println("You´ve gained access.");
-        } else if (isCitizen && isNight) {
+        } else if (isCitizen && isNight) { //Area and time.
             System.out.println("Access denied.");
-        } else System.out.println("Access condition unknown.");
+        } else System.out.println("Access condition not met.");
 
+        //If (Evening + High + Citizen + noEmergency) = "Yellow light and Access condition not met".
+        //If (Night + High + Citizen + noEmergency) = "Red light and Access denied".
+        //If (Day + Low + Company + noEmergency) ="Green light and You´ve gained access".
     }
 }
