@@ -109,6 +109,6 @@ public class Main {
 
         //If (Evening + High + Citizen + noEmergency) = "Yellow light and Access condition not met".
         //If (Night + High + Citizen + noEmergency) = "Red light and Access denied".
-        //If (Day + Low + Company + noEmergency) ="Green light and You´ve gained access".
+        //If (Day + Low + Company + noEmergency) = "Green light and You´ve gained access".
     }
 }
