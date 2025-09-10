@@ -11,10 +11,13 @@ public class Main {
         String timeInNumbers = input.nextLine();
         int time = Integer.parseInt(timeInNumbers);
         if (time >= 0 && time <= 600){
-            System.out.println("NAT");
-        } else if (time > 600 && time <= 1200) {
-            System.out.println("MORGEN");
-        } else System.out.println("DAG");
+            System.out.println("Night");
+        } else if (time > 600 && time <= 1200){
+            System.out.println("Morning");
+        } else if (time > 1200 && time <= 1800) {
+            System.out.println("Day");
+        } else System.out.println("Evening");
+
 
         //Trafikmængde.
         System.out.println("Hvordan er trafikmængden? HØJ eller LAV.");
@@ -40,9 +43,30 @@ public class Main {
         } else System.out.println("Ingen nødsituation.");
 
         //Betingelser for trafiklys.
-        green
+        Green
         if (time == "DAG" && traffic == "LAV"){
-            else System.out.println(boligOmraade);
+            System.out.println("Green light");
+        } else if (nødsituation.equals("JA")) {
+            System.out.println("Green light");
+        }
+        Yellow
+        if (time == "AFTEN"){
+            System.out.println("Yellow light");
+        } else if (time == "NAT" && traffic == "LAV") {
+            System.out.println("Yellow light");
+        }
+        Red
+        if (time == "NAT" && traffic == "HØJ"){
+            System.out.println("Red light");
+        } else if (boligOmraade == "BOLIG" && traffic == "HØJ") {
+            System.out.println("Red light");
+        }
+
+        //Betingelder for adgang:
+        if (boligOmraade == true && "BLANDET" == true && traffic == "LAV"){
+            System.out.println("Tilladt");
+        } else if (boligOmraade == "BOLIG" && "NAT" == "NAT") {
+            System.out.println("Forbudt");
         }
 
     }
