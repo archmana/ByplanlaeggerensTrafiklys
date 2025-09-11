@@ -8,18 +8,19 @@ public class Main {
         //Time of the day.
         Scanner input = new Scanner(System.in);
         System.out.println("What time is it? Write like it´s military time, example 1300.");
+        System.out.println("Don´t write between 0600 - 1200");
         String timeInNumbers = input.nextLine();
         int time = Integer.parseInt(timeInNumbers);
 
         boolean isNight = false;
-        boolean isMorning = false;
+        boolean isMorning = false; //Vi ved godt morgen ikke er en mulighed.
         boolean isDay = false;
         boolean isEvening = false;
 
         if (time >= 0 && time <= 600){
             isNight = true;
             System.out.println("Night");
-        } else if (time > 600 && time <= 1200){
+        } else if (time > 600 && time <= 1200){ //ikke en mulighed.
             isMorning = true;
             System.out.println("Morning");
         } else if (time > 1200 && time <= 1800){
@@ -75,7 +76,7 @@ public class Main {
         String emergency = input.nextLine();
 
         boolean isEmergency = false;
-        boolean isNotEmergency = false;
+        boolean isNotEmergency = false; //Hvis det er en nødsituation er lyset grønt, udover det er resten nej.
 
         if (emergency.equals("Yes")){
             isEmergency = true;
@@ -101,6 +102,7 @@ public class Main {
 
         //Conditions for access.
         //If (isDay + isHigh + isCompany + noEmergency) = No Access condition or light condition met. (SOLVED)
+
         if (isCompany || (isMixed && isLow)){ //Area and traffic.
             System.out.println("You´ve gained access.");
         } else if (isCitizen && isNight) { //Area and time.
