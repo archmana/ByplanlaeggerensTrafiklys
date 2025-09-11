@@ -100,7 +100,7 @@ public class Main {
 
 
         //Conditions for access.
-        //If (isDay + isHigh + isCompany + noEmergency) = No Access condition or light condition met.
+        //If (isDay + isHigh + isCompany + noEmergency) = No Access condition or light condition met. (SOLVED)
         if (isCompany || (isMixed && isLow)){ //Area and traffic.
             System.out.println("You´ve gained access.");
         } else if (isCitizen && isNight) { //Area and time.
